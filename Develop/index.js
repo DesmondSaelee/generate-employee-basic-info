@@ -1,10 +1,62 @@
 const inquirer = require('inquirer');
-const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const employeeArray = [];
 
-const generateHTML = ({ name, location, github, linkedin }) =>
+const init = () =>{
+    inquirer.prompt([
+        {
+           type:"list",
+           choices:["Add Manager","Add Intern", "Add Engineer", "None" ],
+           message:"Choose position of team member.",
+           name:"option"
+        }
+    ]).then(Response => {
+        switch(Response.option){
+            case 'Add Manager':
+                AddManager()
+                break
+            case 'Add Intern':
+                AddIntern()
+                break
+            case 'Add Engineer':
+                AddEngineer()
+                break
+                default: generateHTML()
+                
+        }
+    })
+}
+const AddManager = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Enter manager name.',
+            name: 'Name',
+        },
+        {
+            type: 'input',
+            message: 'Enter Id.',
+            name: 'Id',
+        },
+        {
+            type: 'input',
+            message: 'Enter Email.',
+            name: 'Email',
+        },
+        {
+            type: 'input',
+            message: 'Enter office number.',
+            name: 'officeNumber',
+        }
+    ]).then(response => {
+        const newManager = new Manager(response.Name, response.Id, response.Email, response.officeNumber)
+        employeeArray.push(newManager)
+        init()
+    })
+}
+const generateHTML = ({ name, Id, Email, linkedin }) =>
   `<!DOCTYPE html>
 <html lang="en">
 <head>

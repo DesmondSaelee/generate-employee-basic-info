@@ -1,11 +1,11 @@
 const Engineer = require('../lib/Engineer.js')
 test('Testing Engineer object', () => {
-    const EngineerTest = new Engineer('Bob', 2, 'Testemail@gmail.com', 'GithubUsername')
+    const EngineerTest = new Engineer('Adam', 1, 'Testemail@gmail.com', 'GithubUsername')
     expect(typeof (EngineerTest)).toBe("object")
 })
 test('Testing Engineer name attribute', () => {
-    const EngineerTest = new Engineer('Bob', 2, 'Testemail@gmail.com', 'GithubUsername')
-    expect(EngineerTest.name).toBe("Bob")
+    const EngineerTest = new Engineer('Adam', 1, 'Testemail@gmail.com', 'GithubUsername')
+    expect(EngineerTest.name).toBe("Adam")
 })
 test('Testing Engineer id attribute', () => {
     const EngineerTest = new Engineer('Adam', 1, 'Testemail@gmail.com',  'GithubUsername')

@@ -1,0 +1,20 @@
+.myTeam {
+   background-color: red;
+   color: white;
+   display: flex;
+   justify-content: center;
+   
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    background-color: rgb(66, 135, 239);
+    color: white;
+    
+}

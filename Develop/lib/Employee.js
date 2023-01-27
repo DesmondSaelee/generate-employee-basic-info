@@ -1,10 +1,11 @@
-
+// creating class variables with values.
 class Employee {
 constructor(name,Id,email){
     this.name = name
     this.Id = Id
     this.email = email
 } 
+// creating methods to return values.
 getName(){
     return this.name
 }
@@ -21,5 +22,5 @@ getRole(){
 }
 
 }
-
+//exporting info.
 module.exports = Employee

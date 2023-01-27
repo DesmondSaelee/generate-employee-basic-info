@@ -1,3 +1,4 @@
+// importing everything I need. classes and inquirer and fs. 
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Engineer = require('./lib/Engineer');
@@ -6,12 +7,13 @@ const Manager = require('./lib/Manager');
 const Employee = require('./lib/Employee');
 const employeeArray = [];
 
+// init function containing all my prompts
 const init = () => {
     AddManager();
 
 
 }
-
+// function prompting for questions. taking response and prompting corresponding method.
 const TeamMemberPrompt = () => {
     inquirer.prompt([
         {
@@ -38,7 +40,7 @@ const TeamMemberPrompt = () => {
 }
 
 
-
+// my prompt questions for corresponding position.
 const AddManager = () => {
     inquirer.prompt([
         {
@@ -61,6 +63,7 @@ const AddManager = () => {
             message: 'Enter office number.',
             name: 'officeNumber',
         }
+        // taking response and creating new constructor and pushing to employee array then prompting again.
     ]).then(response => {
         const newManager = new Manager(response.Name, response.Id, response.Email, response.officeNumber)
         employeeArray.push(newManager)
@@ -127,9 +130,10 @@ const AddEngineer = () => {
     })
 
 }
-
+//calling init function.
 init()
 
+// generating my Html with boiler plate code and bootstrap
 const generateHTML = (employeeArray) => {
     console.log(employeeArray)
     let html = `<!DOCTYPE html>
@@ -138,13 +142,15 @@ const generateHTML = (employeeArray) => {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-      <title>Document</title>
+      <link rel="stylesheet" href="./dist/style.css">
+      <title>Team-Generator</title>
     </head>
-    <body>`
-    //   <header class="p-5 mb-4 header bg-light">
-    //     <div class="container">'
+    <body>
+    <header class = myTeam>My Team</header>`
     for (const employee of employeeArray) {
-        let card = `<div class="card" style="width: 18rem;">
+        let card = `
+        <div class = flex-container>
+        <div class="card" style="width: 18rem;">
             
             <div class="card-header">
             <div class = "container">
@@ -157,11 +163,9 @@ const generateHTML = (employeeArray) => {
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${employee.Id}</li>
                 <li class="list-group-item">Email: ${employee.email}</li>
-                <li class="list-group-item">  `
-
-        // card head use get role method
-        // open card body which is my let card
-        // 
+                <li class="list-group-item">
+             `
+     // if statement to attach different info for corresponding position.
         if (employee.officeNumber) {
             const officeNumber = `office number: ${employee.officeNumber}`
             card += officeNumber
@@ -171,10 +175,17 @@ const generateHTML = (employeeArray) => {
             card += GithubUsername
         }
         if (employee.schoolName) {
-            `School Name: ${employee.schoolName}`
+            const schoolName = `School Name: ${employee.schoolName}`
             card += schoolName
         }
-        const cardClosing = `</li> </ul> </div>` ;
+        const cardClosing = `
+        </li>
+        </ul> 
+        </div>
+        </div>
+        ` ;
+       
+       // appending to card and html
         card += cardClosing;
         html += card;
 
@@ -183,31 +194,9 @@ const generateHTML = (employeeArray) => {
     html += `</body>
     </html>`;
 
-    
 
-fs.writeFile('index.html', html, (err) => {
-    err ? console.error(err) : console.log('Success!');
-})
+    // create a file
+    fs.writeFile('index.html', html, (err) => {
+        err ? console.error(err) : console.log('Success!');
+    })
 }
-//     `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-//   <title>Document</title>
-// </head>
-// <body>
-//   <header class="p-5 mb-4 header bg-light">
-//     <div class="container">
-//       <h1 class="display-4">Hi! My name is ${name}</h1>
-//       <p class="lead">I am from ${Id}.</p>
-//       <h3>Example heading <span class="badge bg-secondary">Contact Me</span></h3>
-//       <ul class="list-group">
-//         <li class="list-group-item">My GitHub username is ${Email}</li>
-//         <li class="list-group-item">LinkedIn: ${officeNumber}</li>
-//       </ul>
-//     </div>
-//   </header>
-// </body>
-// </html>`;

@@ -1,4 +1,7 @@
+// import needed class
 const Employee = require('../lib/Employee')
+
+// all my test functions for each piece of info.
 test ('Testing Employee basic info', () => {
     const EmployeeTest = new Employee('Adam', 1, 'Testemail@gmail.com')
     expect(typeof(EmployeeTest)).toBe("object")

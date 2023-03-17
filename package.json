@@ -1,24 +1,28 @@
 {
-  "name": "generate-employee-basic-info",
+  "name": "module-13-challenge-orm",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DesmondSaelee/generate-employee-basic-info.git"
+    "url": "git@work.github.com:coding-boot-camp/module-13-challenge-orm.git"
   },
   "keywords": [],
-  "author": "Desmond Saelee",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DesmondSaelee/generate-employee-basic-info/issues"
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   },
-  "homepage": "https://github.com/DesmondSaelee/generate-employee-basic-info#readme",
   "dependencies": {
-    "inquirer": "^8.2.4",
-    "jest": "^29.4.0"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.5"
   }
 }
